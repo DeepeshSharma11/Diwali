@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Diwali - Technovia Tech</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pastel-pink: #ffb6c1;
+            --pastel-purple: #a78bfa;
+            --pastel-blue: #b5e9e9;
+            --pastel-peach: #ffd8be;
+            --pastel-green: #c4e8c4;
+            --pastel-lavender: #f0e6ff;
+            --pastel-coral: #ff9e7d;
+            --text-color: #7e6b8f;
+            --light-bg: #f5f7fa;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, var(--light-bg), #e4edfb, var(--pastel-lavender));
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, rgba(255, 216, 190, 0.9), rgba(167, 139, 250, 0.9));
+            padding: 15px 0;
+            box-shadow: 0 4px 15px rgba(167, 139, 250, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--text-color);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--pastel-purple);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .page {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            z-index: 10;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--pastel-peach), 0 0 20px var(--pastel-peach);
+            animation: glow 2s infinite alternate;
+            color: var(--pastel-coral);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--pastel-purple);
+            text-shadow: 0 0 5px var(--pastel-lavender);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin: 25px 0 15px;
+            color: var(--pastel-purple);
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--pastel-purple);
+            text-shadow: 0 0 5px var(--pastel-lavender);
+        }
+
+        .diya-container {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            position: relative;
+            z-index: 5;
+        }
+
+        .diya {
+            width: 80px;
+            height: 40px;
+            background: var(--pastel-pink);
+            border-radius: 0 0 40px 40px;
+            position: relative;
+            margin: 0 15px;
+            box-shadow: 0 0 20px var(--pastel-pink);
+        }
+
+        .diya::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            width: 60px;
+            height: 30px;
+            background: var(--pastel-peach);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--pastel-peach);
+        }
+
+        .flame {
+            position: absolute;
+            top: -45px;
+            left: 35px;
+            width: 10px;
+            height: 30px;
+            background: var(--pastel-peach);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 20px var(--pastel-peach), 0 0 40px var(--pastel-pink);
+            animation: flicker 0.5s infinite alternate;
+            transform-origin: bottom;
+            z-index: 4;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            margin-top: 40px;
+            padding: 15px;
+            background: rgba(255, 182, 193, 0.2);
+            border-radius: 10px;
+            border: 1px solid var(--pastel-pink);
+            box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+            position: relative;
+            z-index: 6;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .personalized-message {
+            font-size: 1.8rem;
+            margin-top: 20px;
+            color: var(--pastel-purple);
+            text-shadow: 0 0 5px var(--pastel-lavender);
+            min-height: 60px;
+            position: relative;
+            z-index: 6;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.2);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--pastel-purple);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--text-color);
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+            border-color: var(--pastel-coral);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: var(--pastel-purple);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #8b5cf6;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(167, 139, 250, 0.5);
+        }
+
+        /* Content Pages */
+        .content-section {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(167, 139, 250, 0.1);
+            text-align: left;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .content-section ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content-section li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.9), rgba(255, 216, 190, 0.9));
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 -4px 15px rgba(167, 139, 250, 0.2);
+            position: relative;
+            z-index: 20;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: var(--pastel-coral);
+        }
+
+        .website-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .website-link:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 15px;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px var(--pastel-peach), 0 0 20px var(--pastel-peach);
+            }
+            to {
+                text-shadow: 0 0 20px var(--pastel-peach), 0 0 30px var(--pastel-peach), 0 0 40px var(--pastel-peach);
+            }
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                transform: scaleY(1) rotate(-2deg);
+            }
+            50% {
+                transform: scaleY(1.1) rotate(2deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Alert Styling */
+        .custom-alert {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .alert-content {
+            background: linear-gradient(135deg, var(--pastel-peach), #e4edfb);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(168, 155, 255, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: alertPop 0.5s ease-out;
+            border: 1px solid #d1c4e9;
+        }
+
+        .alert-content h2 {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .alert-input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid var(--pastel-purple);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            text-align: center;
+            outline: none;
+            text-transform: capitalize;
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--text-color);
+        }
+
+        .alert-input::placeholder {
+            color: #b8b0cc;
+        }
+
+        .alert-btn {
+            background: var(--pastel-purple);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
+        }
+
+        .alert-btn:hover {
+            background: #8b5cf6;
+            transform: scale(1.05);
+        }
+
+        .name-example {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        @keyframes alertPop {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Floating elements for decoration */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 20px;
+            height: 20px;
+            top: 10%;
+            left: 10%;
+            background: var(--pastel-peach);
+            animation-duration: 20s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 15px;
+            height: 15px;
+            top: 20%;
+            right: 15%;
+            background: var(--pastel-purple);
+            animation-duration: 25s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 25px;
+            height: 25px;
+            bottom: 15%;
+            left: 20%;
+            background: var(--pastel-pink);
+            animation-duration: 18s;
+        }
+
+        .floating-element:nth-child(4) {
+            width: 18px;
+            height: 18px;
+            bottom: 25%;
+            right: 10%;
+            background: var(--pastel-blue);
+            animation-duration: 22s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
+        /* Fireworks container */
+        .fireworks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: rgba(196, 232, 196, 0.8);
+            border: 1px solid var(--pastel-green);
+            color: #2d5a2d;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .subtitle {
+                font-size: 1.4rem;
+            }
+            .message {
+                font-size: 1.2rem;
+            }
+            .personalized-message {
+                font-size: 1.4rem;
+            }
+            .diya {
+                width: 60px;
+                margin: 0 10px;
+            }
+            .flame {
+                left: 25px;
+            }
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                gap: 15px;
+            }
+            .footer-links {
+                gap: 15px;
+            }
+            .form-container, .content-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">🪔 Diwali Celebrations</div>
+            <nav class="nav-links">
+                <a href="#" class="nav-link active" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="about">About Diwali</a>
+                <a href="#" class="nav-link" data-page="wishes">Send Wishes</a>
+                <a href="#" class="nav-link" data-page="contact">Contact</a>
+                <a href="#" class="nav-link" data-page="privacy">Privacy</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="fireworks-container" id="fireworks"></div>
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        
+        <!-- Home Page -->
+        <div class="page active" id="home-page">
+            <div class="container">
+                <h1>Happy Diwali</h1>
+                <div class="subtitle">आप सब को दीपावली की हार्दिक शुभकामनाएं</div>
+                
+                <div class="personalized-message" id="personalizedMessage"></div>
+                
+                <div class="diya-container">
+                    <div class="diya">
+                        <div class="flame"></div>
+                    </div>
+                    <div class="diya">
+                        <div class="flame"></div>
+                    </div>
+                    <div class="diya">
+                        <div class="flame"></div>
+                    </div>
+                </div>
+                
+                <div class="message">
+                    Wishing you and your family a joyous Diwali filled with light, happiness, and prosperity!
+                    May this festival of lights bring new beginnings, success, and boundless joy to your life.
+                    Let's celebrate the victory of light over darkness and knowledge over ignorance.
+                </div>
+            </div>
+        </div>
+
+        <!-- About Diwali Page -->
+        <div class="page" id="about-page">
+            <div class="container">
+                <h2>About Diwali</h2>
+                <div class="content-section">
+                    <h3>The Festival of Lights</h3>
+                    <p>Diwali, also known as Deepavali, is one of the most important festivals in Indian culture. It's a five-day celebration that marks the victory of light over darkness and good over evil.</p>
+                    
+                    <h3>Significance of Diwali</h3>
+                    <p>Diwali has different significance across various regions of India:</p>
+                    <ul>
+                        <li>In North India, it celebrates Lord Rama's return to Ayodhya after 14 years of exile</li>
+                        <li>In South India, it marks Lord Krishna's victory over the demon Narakasura</li>
+                        <li>In West India, it honors the day Lord Vishnu sent the demon King Bali to rule the nether world</li>
+                        <li>For Jains, it marks the nirvana of Lord Mahavira</li>
+                        <li>For Sikhs, it commemorates the release of Guru Hargobind from imprisonment</li>
+                    </ul>
+                    
+                    <h3>Diwali Traditions</h3>
+                    <p>Traditional Diwali celebrations include:</p>
+                    <ul>
+                        <li>Lighting diyas (oil lamps) and candles</li>
+                        <li>Decorating homes with rangoli (colorful patterns)</li>
+                        <li>Exchanging gifts and sweets with family and friends</li>
+                        <li>Wearing new clothes</li>
+                        <li>Performing Lakshmi Puja (worship of the goddess of wealth)</li>
+                        <li>Bursting firecrackers (though many now opt for eco-friendly celebrations)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Send Wishes Page -->
+        <div class="page" id="wishes-page">
+            <div class="container">
+                <h2>Send Diwali Wishes</h2>
+                <div class="form-container">
+                    <form id="wishForm">
+                        <div class="form-group">
+                            <label for="senderName">Your Name</label>
+                            <input type="text" id="senderName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipientName">Recipient's Name</label>
+                            <input type="text" id="recipientName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipientEmail">Recipient's Email</label>
+                            <input type="email" id="recipientEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wishMessage">Your Diwali Wish</label>
+                            <textarea id="wishMessage" class="form-control" required>May the divine light of Diwali bring peace, prosperity, and happiness to your life!</textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Diwali Wish</button>
+                    </form>
+                    <div class="success-message" id="wishSuccess">
+                        Your Diwali wish has been sent successfully! 🪔
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Page -->
+        <div class="page" id="contact-page">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="form-container">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Your Name</label>
+                            <input type="text" id="contactName" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Your Email</label>
+                            <input type="email" id="contactEmail" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <input type="text" id="contactSubject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Your Message</label>
+                            <textarea id="contactMessage" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                    <div class="success-message" id="contactSuccess">
+                        Your message has been sent successfully! We'll get back to you soon.
+                    </div>
+                </div>
+                
+                <div class="content-section" style="margin-top: 30px;">
+                    <h3>Other Ways to Reach Us</h3>
+                    <p><strong>Email:</strong> info.technoviax@gmail.com</p>
+                    <p><strong>Phone:</strong> +9 8433125736</p>
+                    <p><strong>Address:</strong> Bareilly </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Privacy Page -->
+        <div class="page" id="privacy-page">
+            <div class="container">
+                <h2>Privacy Policy & Disclaimer</h2>
+                <div class="content-section">
+                    <h3>Privacy Policy</h3>
+                    <p>Your privacy is important to us. This privacy policy explains what personal data we collect and how we use it.</p>
+                    
+                    <h4>Information We Collect</h4>
+                    <p>We may collect the following information:</p>
+                    <ul>
+                        <li>Name and contact information</li>
+                        <li>Demographic information</li>
+                        <li>Other information relevant to customer surveys and/or offers</li>
+                    </ul>
+                    
+                    <h4>How We Use the Information</h4>
+                    <p>We require this information to understand your needs and provide you with a better service, and in particular for the following reasons:</p>
+                    <ul>
+                        <li>Internal record keeping</li>
+                        <li>Improving our products and services</li>
+                        <li>Sending promotional emails about new products, special offers or other information which we think you may find interesting</li>
+                        <li>From time to time, we may also use your information to contact you for market research purposes</li>
+                    </ul>
+                    
+                    <h3>Disclaimer</h3>
+                    <p>The information contained on this website is for general information purposes only. While we endeavor to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose.</p>
+                    
+                    <p>In no event will we be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
+                    
+                    <p>Through this website you are able to link to other websites which are not under our control. We have no control over the nature, content and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" class="footer-link" data-page="home">Home</a>
+                <a href="#" class="footer-link" data-page="about">About</a>
+                <a href="#" class="footer-link" data-page="contact">Contact</a>
+                <a href="#" class="footer-link" data-page="privacy">Privacy</a>
+            </div>
+            <a href="https://technoviaxtech.netlify.app/" class="website-link" target="_blank">
+                🌐 Visit Our Website: Technovia Tech
+            </a>
+            <div class="copyright">
+                &copy; 2023 Technovia Tech. All Rights Reserved. | Happy Diwali! 🪔
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Alert for Name Input -->
+    <div class="custom-alert" id="nameAlert">
+        <div class="alert-content">
+            <h2>Enter Your Name for Diwali Wishes</h2>
+            <input type="text" class="alert-input" id="userName" placeholder="Your Full Name" autofocus>
+            <div class="name-example"></div>
+            <button class="alert-btn" id="submitName">Get Diwali Wishes</button>
+        </div>
+    </div>
+
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation functionality
+            const navLinks = document.querySelectorAll('.nav-link, .footer-link');
+            const pages = document.querySelectorAll('.page');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Update active nav link
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show target page
+                    pages.forEach(page => page.classList.remove('active'));
+                    document.getElementById(`${targetPage}-page`).classList.add('active');
+                });
+            });
+            
+            // Form submissions
+            document.getElementById('wishForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                document.getElementById('wishSuccess').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('wishSuccess').style.display = 'none';
+                }, 5000);
+                this.reset();
+            });
+            
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                document.getElementById('contactSuccess').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('contactSuccess').style.display = 'none';
+                }, 5000);
+                this.reset();
+            });
+            
+            // Auto-capitalize name inputs
+            const nameInputs = document.querySelectorAll('input[type="text"]');
+            nameInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const cursorPosition = this.selectionStart;
+                    const originalValue = this.value;
+                    
+                    // Apply capitalization
+                    this.value = capitalizeName(originalValue);
+                    
+                    // Restore cursor position
+                    this.setSelectionRange(cursorPosition, cursorPosition);
+                });
+            });
+        });
+
+        // Fireworks animation with pastel colors
+        const fireworksContainer = document.getElementById('fireworks');
+        const colors = ['#ffb6c1', '#a78bfa', '#b5e9e9', '#ffd8be', '#c4e8c4', '#f0e6ff', '#ff9e7d', '#d1c4e9'];
+        
+        function createFirework() {
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            
+            // Random position
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            
+            firework.style.left = `${x}px`;
+            firework.style.top = `${y}px`;
+            
+            // Random color
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.backgroundColor = color;
+            
+            fireworksContainer.appendChild(firework);
+            
+            // Create particles
+            const particleCount = 50;
+            for (let i = 0; i < particleCount; i++) {
+                createParticle(x, y, color);
+            }
+            
+            // Remove firework after animation
+            setTimeout(() => {
+                firework.remove();
+            }, 1000);
+        }
+        
+        function createParticle(x, y, color) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            particle.style.left = `${x}px`;
+            particle.style.top = `${y}px`;
+            particle.style.backgroundColor = color;
+            
+            // Random direction and distance
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 50 + Math.random() * 100;
+            const duration = 500 + Math.random() * 1000;
+            
+            const translateX = Math.cos(angle) * distance;
+            const translateY = Math.sin(angle) * distance;
+            
+            particle.style.animation = `particleMove ${duration}ms forwards`;
+            particle.style.setProperty('--translateX', `${translateX}px`);
+            particle.style.setProperty('--translateY', `${translateY}px`);
+            
+            fireworksContainer.appendChild(particle);
+            
+            // Remove particle after animation
+            setTimeout(() => {
+                particle.remove();
+            }, duration);
+        }
+        
+        // Create fireworks at intervals
+        setInterval(createFirework, 500);
+        
+        // Personalized wishes functionality
+        const nameAlert = document.getElementById('nameAlert');
+        const userNameInput = document.getElementById('userName');
+        const submitNameBtn = document.getElementById('submitName');
+        const personalizedMessage = document.getElementById('personalizedMessage');
+        
+        const diwaliWishes = [
+            "May the divine light of Diwali bring peace, prosperity, and happiness to your life, {name}!",
+            "Wishing you a Diwali that brings happiness, health, and wealth, dear {name}!",
+            "May this Diwali light up new dreams, fresh hopes, and fill your days with pleasant surprises and moments, {name}!",
+            "On this auspicious occasion, wishing you and your family a gleam of diyas, echo of holy chants and contentment and happiness always, {name}!",
+            "May the beauty of Deepavali season fill your home with happiness, {name}!",
+            "Wishing you a Diwali full of joyful moments and memories, {name}!",
+            "May the lamps of Diwali illuminate your life with endless joy, {name}!",
+            "Sending you warm wishes for a Diwali filled with love, light, and laughter, {name}!"
+        ];
+        
+        // Function to capitalize first letter of each word
+        function capitalizeName(name) {
+            return name
+                .toLowerCase()
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+        }
+        
+        // Show alert on page load
+        window.addEventListener('load', function() {
+            nameAlert.style.display = 'flex';
+            userNameInput.focus();
+        });
+        
+        submitNameBtn.addEventListener('click', function() {
+            let userName = userNameInput.value.trim();
+            
+            if (userName === '') {
+                userNameInput.placeholder = "Please enter your name!";
+                userNameInput.style.borderColor = "#ff9e7d";
+                return;
+            }
+            
+            // Apply final capitalization (in case user pasted text)
+            userName = capitalizeName(userName);
+            
+            // Hide the alert
+            nameAlert.style.display = 'none';
+            
+            // Select a random wish
+            const randomWish = diwaliWishes[Math.floor(Math.random() * diwaliWishes.length)];
+            
+            // Replace placeholder with user's name
+            const personalizedWish = randomWish.replace('{name}', userName);
+            
+            // Display the personalized wish
+            personalizedMessage.textContent = personalizedWish;
+            
+            // Add a small celebration effect
+            createCelebrationFireworks();
+        });
+        
+        // Allow pressing Enter to submit
+        userNameInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitNameBtn.click();
+            }
+        });
+        
+        // Create special celebration fireworks
+        function createCelebrationFireworks() {
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    createFirework();
+                }, i * 200);
+            }
+        }
+        
+        // Add CSS for particles
+        const style = document.createElement('style');
+        style.textContent = `
+            .firework {
+                position: absolute;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                box-shadow: 0 0 10px currentColor;
+                animation: fireworkExplode 1s forwards;
+            }
+            
+            .particle {
+                position: absolute;
+                width: 3px;
+                height: 3px;
+                border-radius: 50%;
+                box-shadow: 0 0 5px currentColor;
+                opacity: 1;
+            }
+            
+            @keyframes fireworkExplode {
+                0% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(0);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes particleMove {
+                0% {
+                    transform: translate(0, 0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translate(var(--translateX), var(--translateY));
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
