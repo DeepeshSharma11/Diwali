@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Diwali - TechnoviaX Tech</title>
     
-    <!-- Social Media Meta Tags -->
+    <!-- Social Media Meta Tags FIX: Must use a full, absolute HTTPS URL for og:image -->
     <meta property="og:title" content="Happy Diwali - TechnoviaX Tech">
     <meta property="og:description" content="आप सब को दीपावली की हार्दिक शुभकामनाएं! Wishing you a joyful Diwali filled with light and prosperity.">
-    <meta property="og:image" content="Pngtree—lakshmi and ganesha hindu deities_23084191.png">
+    <!-- CRITICAL FIX: Replaced local image name with an absolute, public URL for the WhatsApp preview. -->
+    <meta property="og:image" content="https://placehold.co/1200x630/FFF8C7/8B5CF6?text=Happy+Diwali+from+TechnoviaX">
     <meta property="og:url" content="https://technoviaxtech.netlify.app/diwali">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="TechnoviaX Tech">
     
-    <!-- Twitter Card Meta Tags -->
+    <!-- Twitter Card Meta Tags FIX -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Happy Diwali - TechnoviaX Tech">
     <meta name="twitter:description" content="आप सब को दीपावली की हार्दिक शुभकामनाएं! Celebrate the festival of lights with us.">
-    <meta name="twitter:image" content="Pngtree—lakshmi and ganesha hindu deities_23084191.png">
+    <!-- CRITICAL FIX: Replaced local image name with an absolute, public URL for the Twitter preview. -->
+    <meta name="twitter:image" content="https://placehold.co/1200x630/FFF8C7/8B5CF6?text=Happy+Diwali+from+TechnoviaX">
     <meta name="twitter:site" content="@TechnoviaX">
     
     <!-- Additional Meta Tags -->
@@ -46,7 +48,7 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, var(--light-bg), #e4edfb, var(--pastel-lavender));
             color: var(--text-color);
             overflow-x: hidden;
@@ -62,11 +64,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('Pngtree—lakshmi and ganesha hindu deities_23084191.png');
-            background-size: contain;
+            /* FIX: Replaced inaccessible local image path with a publicly accessible, subtle background pattern SVG for robustness */
+            background-image: url('https://www.svgrepo.com/show/368817/mandala-pattern-diwali.svg');
+            background-size: 80vh; 
             background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.08;
+            background-repeat: repeat; 
+            opacity: 0.05; /* Made it even more subtle */
             z-index: 0;
             filter: sepia(0.4) brightness(1.05);
             pointer-events: none;
@@ -452,7 +455,7 @@
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.9);
-            display: flex;
+            display: none; /* Changed to display: none; to be controlled by JS */
             justify-content: center;
             align-items: center;
             z-index: 2000;
@@ -885,6 +888,7 @@
     </style>
 </head>
 <body>
+    <!-- The Deity Background image URL has been replaced with a public SVG pattern for robustness in the live environment. -->
     <div class="deity-background"></div>
 
     <header class="header">
@@ -1111,19 +1115,36 @@
             const navLinks = document.querySelectorAll('.nav-link, .footer-link');
             const pages = document.querySelectorAll('.page');
             
+            // Function to handle page navigation
+            function navigateTo(targetPage) {
+                navLinks.forEach(nav => {
+                    if (nav.getAttribute('data-page') === targetPage) {
+                        nav.classList.add('active');
+                    } else {
+                        nav.classList.remove('active');
+                    }
+                });
+                
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                const targetElement = document.getElementById(`${targetPage}-page`);
+                if (targetElement) {
+                    targetElement.classList.add('active');
+                    window.scrollTo(0, 0); // Scroll to top on page change
+                }
+            }
+
+            // Navigation event listeners
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetPage = this.getAttribute('data-page');
-                    
-                    navLinks.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    pages.forEach(page => page.classList.remove('active'));
-                    document.getElementById(`${targetPage}-page`).classList.add('active');
+                    navigateTo(targetPage);
                 });
             });
             
+            // Wish Form submission
             document.getElementById('wishForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 document.getElementById('wishSuccess').style.display = 'block';
@@ -1133,6 +1154,7 @@
                 this.reset();
             });
             
+            // Contact Form submission
             document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 document.getElementById('contactSuccess').style.display = 'block';
@@ -1142,6 +1164,7 @@
                 this.reset();
             });
             
+            // Capitalize input names
             const nameInputs = document.querySelectorAll('input[type="text"]');
             nameInputs.forEach(input => {
                 input.addEventListener('input', function() {
@@ -1209,6 +1232,7 @@
             }, duration);
         }
         
+        // Continuous, subtle fireworks
         setInterval(createFirework, 500);
         
         const nameAlert = document.getElementById('nameAlert');
@@ -1236,6 +1260,7 @@
         }
         
         window.addEventListener('load', function() {
+            // Display the personalized greeting modal on load
             nameAlert.style.display = 'flex';
             userNameInput.focus();
         });
@@ -1276,6 +1301,7 @@
             }
         }
         
+        // Injecting dynamic CSS for fireworks
         const style = document.createElement('style');
         style.textContent = `
             .firework {
