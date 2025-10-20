@@ -6,7 +6,7 @@
     <title>Happy Diwali - TechnoviaX Tech</title>
     
     <!-- Social Media Meta Tags: Reverted to local filename as requested. May break WhatsApp preview. -->
-    <meta property="og:title" content="Happy Diwali>
+    <meta property="og:title" content="Happy Diwali">
     <meta property="og:description" content="आप सब को दीपावली की हार्दिक शुभकामनाएं! Wishing you a joyful Diwali filled with light and prosperity.">
     <meta property="og:image" content="Pngtree—lakshmi and ganesha hindu deities_23084191.png">
     <meta property="og:url" content="https://technoviaxtech.netlify.app/diwali">
@@ -594,6 +594,23 @@
             display: none;
         }
 
+        /* Loading spinner styles */
+        .loading-spinner {
+            display: none;
+            width: 40px;
+            height: 40px;
+            margin: 10px auto;
+            border: 4px solid rgba(167, 139, 250, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid var(--pastel-purple);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             .header-content {
@@ -1002,6 +1019,7 @@
                             <textarea id="wishMessage" class="form-control" required>May the divine light of Diwali bring peace, prosperity, and happiness to your life!</textarea>
                         </div>
                         <button type="submit" class="btn">Send Diwali Wish</button>
+                        <div class="loading-spinner" id="wishLoading"></div>
                     </form>
                     <div class="success-message" id="wishSuccess">
                         Your Diwali wish has been sent successfully! 🪔
@@ -1032,6 +1050,7 @@
                             <textarea id="contactMessage" class="form-control" required></textarea>
                         </div>
                         <button type="submit" class="btn">Send Message</button>
+                        <div class="loading-spinner" id="contactLoading"></div>
                     </form>
                     <div class="success-message" id="contactSuccess">
                         Your message has been sent successfully! We'll get back to you soon.
@@ -1105,6 +1124,7 @@
             <h2>Enter Your Name for Diwali Wishes</h2>
             <input type="text" class="alert-input" id="userName" placeholder="Enter your name" autofocus>
             <button class="alert-btn" id="submitName">Get Diwali Wishes</button>
+            <div class="loading-spinner" id="nameLoading"></div>
         </div>
     </div>
 
@@ -1145,21 +1165,45 @@
             // Wish Form submission
             document.getElementById('wishForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                document.getElementById('wishSuccess').style.display = 'block';
-                setTimeout(() => {
-                    document.getElementById('wishSuccess').style.display = 'none';
-                }, 5000);
-                this.reset();
+                
+                const senderName = document.getElementById('senderName').value;
+                const recipientName = document.getElementById('recipientName').value;
+                const recipientEmail = document.getElementById('recipientEmail').value;
+                const wishMessage = document.getElementById('wishMessage').value;
+                
+                // Show loading spinner
+                document.getElementById('wishLoading').style.display = 'block';
+                
+                // Send data using FormSubmit.co
+                sendFormData({
+                    name: senderName,
+                    recipient: recipientName,
+                    email: recipientEmail,
+                    message: wishMessage,
+                    type: 'Diwali Wish'
+                }, 'wishLoading', 'wishSuccess');
             });
             
             // Contact Form submission
             document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                document.getElementById('contactSuccess').style.display = 'block';
-                setTimeout(() => {
-                    document.getElementById('contactSuccess').style.display = 'none';
-                }, 5000);
-                this.reset();
+                
+                const contactName = document.getElementById('contactName').value;
+                const contactEmail = document.getElementById('contactEmail').value;
+                const contactSubject = document.getElementById('contactSubject').value;
+                const contactMessage = document.getElementById('contactMessage').value;
+                
+                // Show loading spinner
+                document.getElementById('contactLoading').style.display = 'block';
+                
+                // Send data using FormSubmit.co
+                sendFormData({
+                    name: contactName,
+                    email: contactEmail,
+                    subject: contactSubject,
+                    message: contactMessage,
+                    type: 'Contact Form'
+                }, 'contactLoading', 'contactSuccess');
             });
             
             // Capitalize input names
@@ -1175,6 +1219,53 @@
                 });
             });
         });
+
+        // Function to send form data to FormSubmit.co
+        function sendFormData(formData, loadingId, successId) {
+            const loadingSpinner = document.getElementById(loadingId);
+            const successMessage = document.getElementById(successId);
+            
+            // Create a FormData object
+            const data = new FormData();
+            
+            // Add all form data
+            for (const key in formData) {
+                data.append(key, formData[key]);
+            }
+            
+            // Add timestamp
+            data.append('timestamp', new Date().toISOString());
+            
+            // Send using AJAX to FormSubmit.co
+            fetch('https://formsubmit.co/ajax/info.technoviax@gmail.com', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide loading spinner
+                loadingSpinner.style.display = 'none';
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                
+                // Reset form
+                document.getElementById(loadingId.replace('Loading', 'Form')).reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            })
+            .catch(error => {
+                // Hide loading spinner
+                loadingSpinner.style.display = 'none';
+                
+                // Show error message
+                alert('There was an error sending your message. Please try again later.');
+                console.error('Error:', error);
+            });
+        }
 
         const fireworksContainer = document.getElementById('fireworks');
         const colors = ['#ffb6c1', '#a78bfa', '#b5e9e9', '#ffd8be', '#c4e8c4', '#f0e6ff', '#ff9e7d', '#d1c4e9'];
@@ -1237,6 +1328,7 @@
         const userNameInput = document.getElementById('userName');
         const submitNameBtn = document.getElementById('submitName');
         const personalizedMessage = document.getElementById('personalizedMessage');
+        const nameLoading = document.getElementById('nameLoading');
         
         const diwaliWishes = [
             "May the divine light of Diwali bring peace, prosperity, and happiness to your life, {name}!",
@@ -1274,14 +1366,24 @@
             
             userName = capitalizeName(userName);
             
-            nameAlert.style.display = 'none';
+            // Show loading spinner
+            nameLoading.style.display = 'block';
             
+            // Send user name to FormSubmit.co
+            sendFormData({
+                name: userName,
+                type: 'Diwali Name Entry'
+            }, 'nameLoading', null);
+            
+            // Show personalized message
             const randomWish = diwaliWishes[Math.floor(Math.random() * diwaliWishes.length)];
-            
             const personalizedWish = randomWish.replace('{name}', userName);
-            
             personalizedMessage.textContent = personalizedWish;
             
+            // Hide the alert
+            nameAlert.style.display = 'none';
+            
+            // Create celebration fireworks
             createCelebrationFireworks();
         });
         
