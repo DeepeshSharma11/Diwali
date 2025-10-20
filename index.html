@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Diwali - TechnoviaX Tech</title>
     
-    <!-- Social Media Meta Tags: Reverted to local filename as requested. May break WhatsApp preview. -->
+    <!-- Social Media Meta Tags -->
     <meta property="og:title" content="Happy Diwali">
     <meta property="og:description" content="आप सब को दीपावली की हार्दिक शुभकामनाएं! Wishing you a joyful Diwali filled with light and prosperity.">
     <meta property="og:image" content="Pngtree—lakshmi and ganesha hindu deities_23084191.png">
@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="TechnoviaX Tech">
     
-    <!-- Twitter Card Meta Tags: Reverted to local filename as requested. -->
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Happy Diwali">
     <meta name="twitter:description" content="आप सब को दीपावली की हार्दिक शुभकामनाएं! Celebrate the festival of lights with us.">
@@ -62,7 +62,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* REVERTED to the specified file name */
             background-image: url('Pngtree—lakshmi and ganesha hindu deities_23084191.png');
             background-size: contain; 
             background-position: center;
@@ -453,7 +452,7 @@
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.9);
-            display: none; /* Changed to display: none; to be controlled by JS */
+            display: none;
             justify-content: center;
             align-items: center;
             z-index: 2000;
@@ -526,54 +525,6 @@
             animation: float 15s infinite linear;
         }
 
-        .floating-element:nth-child(1) {
-            width: 20px;
-            height: 20px;
-            top: 10%;
-            left: 10%;
-            background: var(--pastel-peach);
-            animation-duration: 20s;
-        }
-
-        .floating-element:nth-child(2) {
-            width: 15px;
-            height: 15px;
-            top: 20%;
-            right: 15%;
-            background: var(--pastel-purple);
-            animation-duration: 25s;
-        }
-
-        .floating-element:nth-child(3) {
-            width: 25px;
-            height: 25px;
-            bottom: 15%;
-            left: 20%;
-            background: var(--pastel-pink);
-            animation-duration: 18s;
-        }
-
-        .floating-element:nth-child(4) {
-            width: 18px;
-            height: 18px;
-            bottom: 25%;
-            right: 10%;
-            background: var(--pastel-blue);
-            animation-duration: 22s;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-            }
-            100% {
-                transform: translateY(0) rotate(360deg);
-            }
-        }
-
         .fireworks-container {
             position: fixed;
             top: 0;
@@ -588,6 +539,16 @@
             background: rgba(196, 232, 196, 0.8);
             border: 1px solid var(--pastel-green);
             color: #2d5a2d;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .error-message {
+            background: rgba(255, 182, 193, 0.8);
+            border: 1px solid var(--pastel-pink);
+            color: #8b2e2e;
             padding: 15px;
             border-radius: 10px;
             margin: 20px 0;
@@ -772,124 +733,6 @@
             }
         }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .logo {
-                font-size: 1.4rem;
-            }
-
-            .nav-links {
-                gap: 8px;
-            }
-
-            .nav-links a {
-                padding: 5px 10px;
-                font-size: 0.85rem;
-            }
-
-            .mantra-text {
-                font-size: 1.1rem;
-            }
-
-            .mantra-title {
-                font-size: 1.1rem;
-            }
-
-            .diya {
-                width: 40px;
-                margin: 0 5px;
-            }
-
-            .diya::before {
-                width: 30px;
-                left: 5px;
-            }
-
-            .flame {
-                left: 15px;
-            }
-
-            .message {
-                font-size: 1rem;
-            }
-
-            .personalized-message {
-                font-size: 1.1rem;
-            }
-
-            .form-container {
-                padding: 15px;
-            }
-
-            .footer-links {
-                gap: 10px;
-            }
-
-            .footer-links a {
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 360px) {
-            h1 {
-                font-size: 1.6rem;
-            }
-
-            .mantra-text {
-                font-size: 1rem;
-            }
-
-            .diya-container {
-                margin: 20px 0;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                gap: 5px;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 8px;
-            }
-        }
-
-        /* Landscape mode for mobile */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .header {
-                padding: 10px 0;
-            }
-
-            .main-content {
-                padding: 20px 15px;
-            }
-
-            .mantra-section {
-                margin: 15px auto;
-                padding: 15px;
-            }
-
-            .diya-container {
-                margin: 20px 0;
-            }
-
-            .message {
-                margin-top: 20px;
-                padding: 10px;
-            }
-        }
-
         @keyframes alertPop {
             0% {
                 transform: scale(0.5);
@@ -903,7 +746,6 @@
     </style>
 </head>
 <body>
-    <!-- The Deity Background image URL has been restored to the local file name as requested. -->
     <div class="deity-background"></div>
 
     <header class="header">
@@ -1024,6 +866,9 @@
                     <div class="success-message" id="wishSuccess">
                         Your Diwali wish has been sent successfully! 🪔
                     </div>
+                    <div class="error-message" id="wishError">
+                        There was an error sending your Diwali wish. Please try again.
+                    </div>
                 </div>
             </div>
         </div>
@@ -1054,6 +899,9 @@
                     </form>
                     <div class="success-message" id="contactSuccess">
                         Your message has been sent successfully! We'll get back to you soon.
+                    </div>
+                    <div class="error-message" id="contactError">
+                        There was an error sending your message. Please try again.
                     </div>
                 </div>
                 
@@ -1093,10 +941,6 @@
                     
                     <h3>Disclaimer</h3>
                     <p>The information contained on this website is for general information purposes only. While we endeavor to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose.</p>
-                    
-                    <p>In no event will we be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
-                    
-                    <p>Through this website you are able to link to other websites which are not under our control. We have no control over the nature, content and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.</p>
                 </div>
             </div>
         </div>
@@ -1173,15 +1017,20 @@
                 
                 // Show loading spinner
                 document.getElementById('wishLoading').style.display = 'block';
+                document.getElementById('wishSuccess').style.display = 'none';
+                document.getElementById('wishError').style.display = 'none';
                 
                 // Send data using FormSubmit.co
                 sendFormData({
+                    _subject: `Diwali Wish from ${senderName}`,
+                    _replyto: recipientEmail,
                     name: senderName,
                     recipient: recipientName,
                     email: recipientEmail,
                     message: wishMessage,
-                    type: 'Diwali Wish'
-                }, 'wishLoading', 'wishSuccess');
+                    type: 'Diwali Wish',
+                    _template: 'table'
+                }, 'wishLoading', 'wishSuccess', 'wishError', this);
             });
             
             // Contact Form submission
@@ -1195,15 +1044,20 @@
                 
                 // Show loading spinner
                 document.getElementById('contactLoading').style.display = 'block';
+                document.getElementById('contactSuccess').style.display = 'none';
+                document.getElementById('contactError').style.display = 'none';
                 
                 // Send data using FormSubmit.co
                 sendFormData({
+                    _subject: contactSubject,
+                    _replyto: contactEmail,
                     name: contactName,
                     email: contactEmail,
                     subject: contactSubject,
                     message: contactMessage,
-                    type: 'Contact Form'
-                }, 'contactLoading', 'contactSuccess');
+                    type: 'Contact Form',
+                    _template: 'table'
+                }, 'contactLoading', 'contactSuccess', 'contactError', this);
             });
             
             // Capitalize input names
@@ -1221,9 +1075,10 @@
         });
 
         // Function to send form data to FormSubmit.co
-        function sendFormData(formData, loadingId, successId) {
+        function sendFormData(formData, loadingId, successId, errorId, formElement) {
             const loadingSpinner = document.getElementById(loadingId);
             const successMessage = document.getElementById(successId);
+            const errorMessage = document.getElementById(errorId);
             
             // Create a FormData object
             const data = new FormData();
@@ -1239,9 +1094,17 @@
             // Send using AJAX to FormSubmit.co
             fetch('https://formsubmit.co/ajax/info.technoviax@gmail.com', {
                 method: 'POST',
-                body: data
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
             })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
                 // Hide loading spinner
                 loadingSpinner.style.display = 'none';
@@ -1249,8 +1112,10 @@
                 // Show success message
                 successMessage.style.display = 'block';
                 
-                // Reset form
-                document.getElementById(loadingId.replace('Loading', 'Form')).reset();
+                // Reset form if provided
+                if (formElement) {
+                    formElement.reset();
+                }
                 
                 // Hide success message after 5 seconds
                 setTimeout(() => {
@@ -1262,8 +1127,14 @@
                 loadingSpinner.style.display = 'none';
                 
                 // Show error message
-                alert('There was an error sending your message. Please try again later.');
+                errorMessage.style.display = 'block';
+                
                 console.error('Error:', error);
+                
+                // Hide error message after 5 seconds
+                setTimeout(() => {
+                    errorMessage.style.display = 'none';
+                }, 5000);
             });
         }
 
@@ -1371,9 +1242,11 @@
             
             // Send user name to FormSubmit.co
             sendFormData({
+                _subject: `Diwali Name Entry: ${userName}`,
                 name: userName,
-                type: 'Diwali Name Entry'
-            }, 'nameLoading', null);
+                type: 'Diwali Name Entry',
+                _template: 'table'
+            }, 'nameLoading', null, null, null);
             
             // Show personalized message
             const randomWish = diwaliWishes[Math.floor(Math.random() * diwaliWishes.length)];
