@@ -8,7 +8,8 @@
     <!-- Social Media Meta Tags -->
     <meta property="og:title" content="Happy Diwali">
     <meta property="og:description" content="आप सब को दीपावली की हार्दिक शुभकामनाएं! Wishing you a joyful Diwali filled with light and prosperity.">
-    <meta property="og:image" content="Pngtree—lakshmi and ganesha hindu deities_23084191.png">
+    <!-- NOTE: The original image URL 'Pngtree—lakshmi and ganesha hindu deities_23084191.png' is a placeholder and may not load. -->
+    <meta property="og:image" content="https://placehold.co/1200x630/ffd700/7e6b8f?text=Happy+Diwali">
     <meta property="og:url" content="https://technoviaxtech.netlify.app/diwali">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="TechnoviaX Tech">
@@ -17,7 +18,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Happy Diwali">
     <meta name="twitter:description" content="आप सब को दीपावली की हार्दिक शुभकामनाएं! Celebrate the festival of lights with us.">
-    <meta name="twitter:image" content="Pngtree—lakshmi and ganesha hindu deities_23084191.png">
+    <!-- NOTE: The original image URL 'Pngtree—lakshmi and ganesha hindu deities_23084191.png' is a placeholder and may not load. -->
+    <meta name="twitter:image" content="https://placehold.co/600x315/ffd700/7e6b8f?text=Happy+Diwali">
     <meta name="twitter:site" content="@TechnoviaX">
     
     <!-- Additional Meta Tags -->
@@ -62,7 +64,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('Pngtree—lakshmi and ganesha hindu deities_23084191.png');
+            /* Original Image URL is likely broken, using a placeholder/fallback technique */
+            background-image: url('Pngtree—lakshmi and ganesha hindu deities_23084191.png'), url('https://placehold.co/1000x1000/ffd700/7e6b8f?text=LAKSHMI+GANESHA'); 
             background-size: contain; 
             background-position: center;
             background-repeat: no-repeat; 
@@ -746,6 +749,7 @@
     </style>
 </head>
 <body>
+    <!-- Fallback background if the original deity image fails to load -->
     <div class="deity-background"></div>
 
     <header class="header">
@@ -775,14 +779,15 @@
                 <h1>Happy Diwali</h1>
                 <div class="subtitle">आप सब को दीपावली की हार्दिक शुभकामनाएं</div>
                 
+                <!-- UPDATED: Powerful Ganesh-Lakshmi Mantra (Mantra 2) -->
                 <div class="mantra-section">
-                    <div class="mantra-title">🌟 Diwali Mantra for Prosperity 🌟</div>
+                    <div class="mantra-title">🌟 शक्तिशाली गणेश-लक्ष्मी मंत्र 🌟</div>
                     <div class="mantra-text">
-                        ॐ श्रीं ह्रीं क्लीं महालक्ष्म्यै नमः
+                        ॐ गं गणपतये नमः । ॐ महालक्ष्म्यै नमः ॥
                     </div>
                     <div class="mantra-meaning">
-                        "Om Shreem Hreem Kleem Mahalakshmyai Namah"<br>
-                        A powerful mantra to invoke the blessings of Goddess Lakshmi for wealth, prosperity, and abundance
+                        "Om Gam Ganapataye Namah | Om Mahalakshmyai Namah"<br>
+                        यह शक्तिशाली मंत्र भगवान गणेश (बाधाओं को दूर करने वाले) और देवी महालक्ष्मी (धन और समृद्धि की देवी) के आशीर्वाद का आह्वान करता है।
                     </div>
                 </div>
                 
@@ -800,10 +805,11 @@
                     </div>
                 </div>
                 
+                <!-- UPDATED: Main Greeting Message in Hindi/Hinglish -->
                 <div class="message">
-                    Wishing you and your family a joyous Diwali filled with light, happiness, and prosperity!
-                    May this festival of lights bring new beginnings, success, and boundless joy to your life.
-                    Let's celebrate the victory of light over darkness and knowledge over ignorance.
+                    आपको और आपके परिवार को प्रकाश, खुशियों और समृद्धि से भरी दीपावली की हार्दिक शुभकामनाएँ!
+                    यह रोशनी का त्योहार आपके जीवन में नई शुरुआत, सफलता और असीम आनंद लाए।
+                    आइए, अंधकार पर प्रकाश की और अज्ञान पर ज्ञान की विजय का उत्सव मनाएँ।
                 </div>
             </div>
         </div>
@@ -1080,6 +1086,11 @@
             const successMessage = document.getElementById(successId);
             const errorMessage = document.getElementById(errorId);
             
+            // Show loading spinner
+            if (loadingSpinner) loadingSpinner.style.display = 'block';
+            if (successMessage) successMessage.style.display = 'none';
+            if (errorMessage) errorMessage.style.display = 'none';
+            
             // Create a FormData object
             const data = new FormData();
             
@@ -1107,10 +1118,12 @@
             })
             .then(data => {
                 // Hide loading spinner
-                loadingSpinner.style.display = 'none';
+                if (loadingSpinner) loadingSpinner.style.display = 'none';
                 
                 // Show success message
-                successMessage.style.display = 'block';
+                if (successMessage) {
+                    successMessage.style.display = 'block';
+                }
                 
                 // Reset form if provided
                 if (formElement) {
@@ -1118,23 +1131,25 @@
                 }
                 
                 // Hide success message after 5 seconds
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 5000);
+                if (successMessage) {
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                }
             })
             .catch(error => {
                 // Hide loading spinner
-                loadingSpinner.style.display = 'none';
+                if (loadingSpinner) loadingSpinner.style.display = 'none';
                 
                 // Show error message
-                errorMessage.style.display = 'block';
+                if (errorMessage) {
+                    errorMessage.style.display = 'block';
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 5000);
+                }
                 
                 console.error('Error:', error);
-                
-                // Hide error message after 5 seconds
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 5000);
             });
         }
 
@@ -1146,7 +1161,7 @@
             firework.classList.add('firework');
             
             const x = Math.random() * window.innerWidth;
-            const y = Math.random() * window.innerHeight;
+            const y = Math.random() * window.innerHeight * 0.8; // Keep fireworks in the upper 80%
             
             firework.style.left = `${x}px`;
             firework.style.top = `${y}px`;
@@ -1201,15 +1216,16 @@
         const personalizedMessage = document.getElementById('personalizedMessage');
         const nameLoading = document.getElementById('nameLoading');
         
+        // UPDATED: Diwali Wishes in Hindi
         const diwaliWishes = [
-            "May the divine light of Diwali bring peace, prosperity, and happiness to your life, {name}!",
-            "Wishing you a Diwali that brings happiness, health, and wealth, dear {name}!",
-            "May this Diwali light up new dreams, fresh hopes, and fill your days with pleasant surprises and moments, {name}!",
-            "On this auspicious occasion, wishing you and your family a gleam of diyas, echo of holy chants and contentment and happiness always, {name}!",
-            "May the beauty of Deepavali season fill your home with happiness, {name}!",
-            "Wishing you a Diwali full of joyful moments and memories, {name}!",
-            "May the lamps of Diwali illuminate your life with endless joy, {name}!",
-            "Sending you warm wishes for a Diwali filled with love, light, and laughter, {name}!"
+            "दीपावली का दिव्य प्रकाश आपके जीवन में शांति, समृद्धि और खुशियाँ लाए, {name}!",
+            "प्रिय {name}, आपको सुख, स्वास्थ्य और धन लाने वाली दीपावली की शुभकामनाएँ!",
+            "यह दीपावली आपके नए सपनों, नई आशाओं को रोशन करे और आपके दिनों को सुखद आश्चर्यों और पलों से भर दे, {name}!",
+            "इस शुभ अवसर पर, आपको और आपके परिवार को दीयों की चमक, पवित्र मंत्रों की गूंज और हमेशा संतुष्टि व खुशी मिले, {name}!",
+            "दीपावली के इस मौसम की सुंदरता आपके घर को खुशियों से भर दे, {name}!",
+            "आपको खुशी भरे पलों और यादों से भरी दीपावली की शुभकामनाएँ, {name}!",
+            "दीपावली के दीये आपके जीवन को अनंत खुशियों से रोशन करें, {name}!",
+            "आपको प्यार, रोशनी और हँसी से भरी दीपावली के लिए हार्दिक शुभकामनाएँ, {name}!"
         ];
         
         function capitalizeName(name) {
@@ -1241,6 +1257,7 @@
             nameLoading.style.display = 'block';
             
             // Send user name to FormSubmit.co
+            // Note: This relies on the success callback logic within sendFormData not being needed here, as we proceed regardless.
             sendFormData({
                 _subject: `Diwali Name Entry: ${userName}`,
                 name: userName,
@@ -1321,3 +1338,4 @@
     </script>
 </body>
 </html>
+
